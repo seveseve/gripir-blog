@@ -2,5 +2,15 @@
 <div ng-include="'components/admin-navbar/admin-navbar.html'"></div>
 
 <div class="container">
-  <p>Here you can CRUD blog entries</p>
+  <h1 class="page-header">Activities</h1>
+  <div class="row" ng-repeat="activity in activities">
+    <div class="col-lg-12">
+      <div class="col-md-8 col-lg-8 col-sm-8">
+        <p>{{activity.title}}</p>
+      </div>
+      <div class="col-md-4 col-lg-4 col-sm-4">
+        <button type="button" class="close" ng-click="deleteActivity(activity)">&times;</button>
+      </div>
+    </div>
+  </div>
 </div>
