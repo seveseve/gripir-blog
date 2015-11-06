@@ -1,0 +1,33 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Severin Friede</h1>
+    <p class="lead">developer and human</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Latest activities</h1>
+      <div class="col-md-12 col-lg-12 col-sm-12" ng-repeat="activity in activities">
+        <h2>{{activity.title}}</h2>
+        <p class="lead"> by {{activity.author}}</p>
+        <p>
+          <span class="glyphicon glyphicon-time"></span> Posted on {{ activity.createdAt | date: 'shortDate'}}
+        </p>
+        <hr>
+        <p>{{activity.text}}</p>
+        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>Email - Google - Instagram - Xing</p>
+  </div>
+</footer>
