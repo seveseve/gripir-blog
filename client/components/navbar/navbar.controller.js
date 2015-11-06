@@ -3,7 +3,7 @@
 angular.module('gripirBlogApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'Blog',
       'link': '/'
     }];
 
