@@ -18,6 +18,10 @@ angular.module('gripirBlogApp')
       $scope.newActivity = '';
     };
 
+    $scope.selectActivity = function(activity) {
+      $scope.selectedActivity = activity;
+    }
+
     $scope.deleteActivity = Modal.confirm.delete(function(activity) {
       $http.delete('/api/activities/' + activity._id);
     });
