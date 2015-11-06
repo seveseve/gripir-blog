@@ -43,12 +43,20 @@ angular.module('gripirBlogApp', [
   })
 
   .run(function ($rootScope, $location, Auth) {
-    // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
+        var isAdmin = Auth.isAdmin();
+
+        // Redirect to login if route requires auth and you're not logged in
         if (next.authenticate && !loggedIn) {
           event.preventDefault();
           $location.path('/login');
+        }
+
+        // Redirect to root if route requires admin role
+        if (next.authenticate && next.mustBeAdmin && !isAdmin && loggedIn) {
+          event.preventDefault();
+          $location.path('/');
         }
       });
     });
