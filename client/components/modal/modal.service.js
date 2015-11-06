@@ -50,7 +50,7 @@ angular.module('gripirBlogApp')
               modal: {
                 dismissable: true,
                 title: 'Confirm Delete',
-                html: '<p>Are you sure you want to delete <strong>' + name + '</strong> ?</p>',
+                html: '<p>Are you sure you want to delete <strong>' + name + '</strong>?</p>',
                 buttons: [{
                   classes: 'btn-danger',
                   text: 'Delete',
