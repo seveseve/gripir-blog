@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gripirBlogApp')
-  .controller('BlogMgmtCtrl', function ($scope, $http, Modal, socket) {
+  .controller('BlogMgmtCtrl', function ($scope, $http, Modal, socket, notify) {
     $scope.activities = [];
 
     $http.get('/api/activities').success(function(activities) {
@@ -37,11 +37,13 @@ angular.module('gripirBlogApp')
         title: $scope.selectedActivity.title,
         author: $scope.selectedActivity.author
       });
+      notify({ message: 'Updated!', duration: 2000, classes: ["alert-success"] });
     };
 
-    $scope.deleteActivity = Modal.confirm.delete(function(activity) {
-      $http.delete('/api/activities/' + activity._id);
-      unselect();
+    $scope.deleteActivity = Modal.confirm.delete(function() {
+      $http.delete('/api/activities/' + $scope.selectedActivity.id);
+      notify({ message: 'Removed!', duration: 2000, classes: ["alert-success"] });
+      $scope.unselect();
     });
 
     $scope.$on('$destroy', function () {
