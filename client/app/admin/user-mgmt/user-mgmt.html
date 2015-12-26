@@ -2,6 +2,11 @@
 <div ng-include="'components/admin-navbar/admin-navbar.html'"></div>
 
 <div class="container">
+	<ol class="breadcrumb">
+  		<li><a href="/admin">Admin</a></li>
+  		<li class="active">User Management</li>
+	</ol>
+
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="user in users">
         <strong>{{user.name}}</strong><br>

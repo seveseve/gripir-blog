@@ -1,14 +1,66 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div ng-include="'components/admin-navbar/admin-navbar.html'"></div>
 
 <div class="container">
-  <div ng-show="selectedActivity">TODO: Show selected edit form, save and discard button</div>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="activity in activities">
-      <strong>{{activity.title}}</strong><br>
-      <span class="text-muted">Created at {{activity.createdAt | date: 'shortDate'}}</span>
-      <a ng-click="deleteActivity(activity.title, activity)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-      <a ng-click="selectActivity(activity)"><span class="glyphicon glyphicon-edit pull-right"></span></a>
-    </li>
-  </ul>
+
+	<ol class="breadcrumb">
+  		<li><a href="/admin">Admin</a></li>
+  		<li class="active">Blog Management</li>	
+	</ol>
+
+	<div class="row">
+    
+    	<div class="col-md-4">
+      		<ul class="list-group">
+        		<li class="list-group-item" ng-repeat="activity in activities">
+	          		<strong>{{activity.title}}</strong><br>
+	          		<span class="text-muted">Created at {{activity.createdAt | date: 'shortDate'}}</span>
+	          		<a ng-click="deleteActivity(activity.title, activity)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+	          		<a ng-click="selectActivity(activity)"><span class="glyphicon glyphicon-edit pull-right"></span></a>
+	       		</li>
+      		</ul>
+    	</div>
+
+    	<div class="col-md-8">
+
+      		<div ng-hide="selectedActivity" class="text-center">
+      			<h1>Select an item to edit or create a new one.</h1>
+      		</div>
+
+      		<div ng-show="selectedActivity">
+
+    			<form class="form-horizontal">
+
+      				<div class="form-group">
+        				<label class="col-sm-2 control-label" for="inputTitle">Title</label>
+        				<div class="col-sm-10">
+          					<input type="text" id="inputTitle" class="form-control" placeholder="Title" ng-model="selectedActivity.title">
+        				</div>
+      				</div>
+      				
+      				<div class="form-group">
+        				<label class="col-sm-2 control-label" for="inputAuthor">Author</label>
+        				<div class="col-sm-10">
+          					<input type="text" id="inputAuthor"class="form-control" placeholder="Author" ng-model="selectedActivity.author">
+        				</div>
+      				</div>
+
+      				<div class="form-group">
+        				<label class="col-sm-2 control-label" for="inputText">Text</label>
+        				<div class="col-sm-10">
+          					<textarea id="inputText"class="form-control" placeholder="Text" ng-model="selectedActivity.text"></textarea>
+        				</div>
+      				</div>
+
+      				<div class="form-group">
+      					<div class="text-right">
+      						<button type="button" class="btn btn-danger" ng-click="unselect()">Discard</button>
+      						<button type="button" class="btn btn-success" ng-click="updateSelected()">Submit</button>
+      					</div>
+    			</form>	
+      		</div>
+      	
+      	</div>
+
+    </div>
+
 </div>

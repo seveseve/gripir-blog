@@ -19,11 +19,29 @@ angular.module('gripirBlogApp')
     };
 
     $scope.selectActivity = function(activity) {
-      $scope.selectedActivity = activity;
-    }
+      $scope.selectedActivity = {
+        id: activity._id,
+        text: activity.text,
+        title: activity.title,
+        author: activity.author
+      }
+    };
+
+    $scope.unselect = function() {
+      $scope.selectedActivity = null;
+    };
+
+    $scope.updateSelected = function() {
+      $http.put('/api/activities/' + $scope.selectedActivity.id, {
+        text: $scope.selectedActivity.text,
+        title: $scope.selectedActivity.title,
+        author: $scope.selectedActivity.author
+      });
+    };
 
     $scope.deleteActivity = Modal.confirm.delete(function(activity) {
       $http.delete('/api/activities/' + activity._id);
+      unselect();
     });
 
     $scope.$on('$destroy', function () {
