@@ -20,7 +20,7 @@ angular.module('gripirBlogApp')
 
     $scope.selectActivity = function(activity) {
       $scope.selectedActivity = activity;
-    }
+    };
 
     $scope.deleteActivity = Modal.confirm.delete(function(activity) {
       $http.delete('/api/activities/' + activity._id);
