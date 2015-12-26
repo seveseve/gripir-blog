@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gripirBlogApp')
-  .controller('BlogMgmtCtrl', function ($scope, $http, Modal, socket) {
+  .controller('BlogMgmtCtrl', function ($scope, $http, Modal, socket, notify) {
     $scope.activities = [];
 
     $http.get('/api/activities').success(function(activities) {
@@ -19,11 +19,31 @@ angular.module('gripirBlogApp')
     };
 
     $scope.selectActivity = function(activity) {
-      $scope.selectedActivity = activity;
-    }
+      $scope.selectedActivity = {
+        id: activity._id,
+        text: activity.text,
+        title: activity.title,
+        author: activity.author
+      }
+    };
 
-    $scope.deleteActivity = Modal.confirm.delete(function(activity) {
-      $http.delete('/api/activities/' + activity._id);
+    $scope.unselect = function() {
+      $scope.selectedActivity = null;
+    };
+
+    $scope.updateSelected = function() {
+      $http.put('/api/activities/' + $scope.selectedActivity.id, {
+        text: $scope.selectedActivity.text,
+        title: $scope.selectedActivity.title,
+        author: $scope.selectedActivity.author
+      });
+      notify({ message: 'Updated!', duration: 2000, classes: ["alert-success"] });
+    };
+
+    $scope.deleteActivity = Modal.confirm.delete(function() {
+      $http.delete('/api/activities/' + $scope.selectedActivity.id);
+      notify({ message: 'Removed!', duration: 2000, classes: ["alert-success"] });
+      $scope.unselect();
     });
 
     $scope.$on('$destroy', function () {

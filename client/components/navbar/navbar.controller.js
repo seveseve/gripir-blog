@@ -7,6 +7,15 @@ angular.module('gripirBlogApp')
       'link': '/'
     }];
 
+    $scope.adminMenu = [{
+      'title': 'User Management',
+      'link': '/admin/user-mgmt'
+      },
+    {
+      'title': 'Blog Management',
+      'link': '/admin/blog-mgmt',
+    }];
+
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
