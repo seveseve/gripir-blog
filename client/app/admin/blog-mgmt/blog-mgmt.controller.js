@@ -14,7 +14,7 @@ angular.module('gripirBlogApp')
     var updateActivities = function() {
       $http.get('/api/activities')
         .success(function(activities) {
-          $scope.activities = activities;
+          $scope.activities = activities.reverse();
           socket.syncUpdates('activity', $scope.activities);
         
           var begin = (($scope.currentPage - 1) * $scope.numPerPage);

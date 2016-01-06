@@ -1,12 +1,12 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container">
+<div class="container content">
 
-	<!-- navigation breadcrumbs -->
-	<ol class="breadcrumb">
-  		<li><a href="/admin">Admin</a></li>
-  		<li class="active">Blog Management</li>	
-	</ol>
+  <!-- navigation breadcrumbs -->
+  <ol class="breadcrumb">
+      <li><a href="/admin">admin</a></li>
+      <li class="active">blog management</li> 
+  </ol>
 
 	<!-- shown when no activity exists -->
 	<div class="text-center" ng-show="activities.length == 0 && !creating">

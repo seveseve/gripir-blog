@@ -5,7 +5,7 @@ angular.module('gripirBlogApp')
     $scope.activities = [];
 
     $http.get('/api/activities').success(function(activities) {
-      $scope.activities = activities;
+      $scope.activities = activities.reverse();;
       socket.syncUpdates('activity', $scope.activities);
     });
 

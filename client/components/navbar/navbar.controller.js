@@ -3,16 +3,16 @@
 angular.module('gripirBlogApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Blog',
+      'title': 'blog',
       'link': '/'
     }];
 
     $scope.adminMenu = [{
-      'title': 'User Management',
+      'title': 'user management',
       'link': '/admin/user-mgmt'
       },
     {
-      'title': 'Blog Management',
+      'title': 'blog management',
       'link': '/admin/blog-mgmt',
     }];
 

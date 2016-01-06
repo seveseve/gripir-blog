@@ -1,28 +1,67 @@
-.thing-form
-    margin 20px 0
+body
+    font-family Lora,"Helvetica Neue",Helvetica,Arial,sans-serif
+    background #f8f8f8
 
-#banner
-    border-bottom none
-    margin-top -20px
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+    margin 0 0 20px
+    text-transform uppercase
+    font-family Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif
+    font-weight 700
+    letter-spacing 1px
 
-#banner h1
-    font-size 60px
-    letter-spacing -1px
-    line-height 1
+.btn,
+.pagination
+    font-family Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif 
+
+.breadcrumb
+    padding 8px 15px
+    margin-bottom 20px
+    list-style none
+    background-color #5E5E5E
+    border-radius 4px
+    font-family Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif
+
+.breadcrumb
+    .active
+      color white
+
+.navbar-custom
+    font-family Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif
+
+.navbar-brand
+    font-weight: 700;
+
+.hero-unit
+    .container
+        h1
+            font-size 40px
 
 .hero-unit
     background #4393B9
+    background: url('../assets/images/bg.jpg') no-repeat center center;
     color #F5F5F5
-    padding 30px 15px
+    padding-top 180px
+    padding-bottom 100px
     position relative
     text-align center
     text-shadow 0 1px 0 rgba(0, 0, 0, 0.1)
 
-.footer
-    border-top 1px solid #E5E5E5
-    margin-top 70px
-    padding 30px 0
-    text-align center
+.content
+    padding-top 120px
 
-.navbar-text
-    margin-left 15px
+@media(min-width:768px)
+    .navbar-custom
+        padding 20px 0
+        border-bottom 0
+        letter-spacing 1px
+        -webkit-transition background .5s ease-in-out,padding .5s ease-in-out
+        -moz-transition background .5s ease-in-out,padding .5s ease-in-out
+        transition background .5s ease-in-out,padding .5s ease-in-out
+    .navbar-custom.top-nav-collapse
+        padding 0
+        border-bottom 4px solid #5E5E5E
