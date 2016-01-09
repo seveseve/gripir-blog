@@ -33,9 +33,10 @@
   <div class="row">
     <div class="col-lg-12">
       <h2 class="page-header">blog</h2>
-      <div class="col-md-12 col-lg-12 col-sm-12" ng-repeat="activity in activities">
+      <div class="activity-text col-md-12 col-lg-12 col-sm-12" ng-repeat="activity in activities">
         <h3>{{activity.title}}</h3>
-        <p>{{activity.text}}</p>
+        <div ng-bind-html="activity.text">
+        </div>
         <p>
           <i class="fa fa-user"></i> {{ activity.author }}&nbsp;
           <i class="fa fa-calendar"></i> posted on {{ activity.createdAt | date: 'shortDate'}}

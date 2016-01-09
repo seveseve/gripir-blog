@@ -1,14 +1,44 @@
 'use strict';
 
 var _ = require('lodash');
+var marked = require('marked');
+var cheerio = require('cheerio');
+var hljs = require('highlight.js');
 var Activity = require('./activity.model');
 
 // Get list of activitys
 exports.index = function(req, res) {
   Activity.find(function (err, activitys) {
     if(err) { return handleError(res, err); }
+
+    if(req.query.marked) {
+      for (var i = 0; i < activitys.length; i++) {
+        activitys[i].text = marked(activitys[i].text);
+      };
+    }
+
+    if(req.query.hljs) {
+      for (var i = 0; i < activitys.length; i++) {
+        activitys[i].text = highlightPreCodeElements(activitys[i].text);
+      }
+    }
+    
     return res.status(200).json(activitys);
   });
+};
+
+var highlightPreCodeElements = function (htmlText) {
+  var $ = cheerio.load(htmlText);
+
+   $('pre code').each(function(i, block) {
+    if ($(this).attr('class') && $(this).attr('class').slice(0, 4) === 'lang') {
+      var indexOfMinus = $(this).attr('class').indexOf('-');
+      var language = $(this).attr('class').substr(indexOfMinus + 1);
+      $(this).html(hljs.highlight(language, $(this).text()).value);
+    }
+  });
+
+  return $.html();
 };
 
 // Get a single activity
@@ -16,6 +46,11 @@ exports.show = function(req, res) {
   Activity.findById(req.params.id, function (err, activity) {
     if(err) { return handleError(res, err); }
     if(!activity) { return res.status(404).send('Not Found'); }
+    
+    if(req.query.marked) { activity.text = marked(activity.text); }
+
+    if(req.query.hljs) { activity.text = highlightPreCodeElements(activity.text); }
+
     return res.json(activity);
   });
 };
