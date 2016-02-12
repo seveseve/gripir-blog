@@ -7,18 +7,18 @@
 var Activity = require('./activity.model');
 
 exports.register = function(socket) {
-  Activity.schema.post('save', function (doc) {
-    onSave(socket, doc);
-  });
-  Activity.schema.post('remove', function (doc) {
-    onRemove(socket, doc);
-  });
+    Activity.schema.post('save', function(doc) {
+        onSave(socket, doc);
+    });
+    Activity.schema.post('remove', function(doc) {
+        onRemove(socket, doc);
+    });
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('activity:save', doc);
+    socket.emit('activity:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('activity:remove', doc);
+    socket.emit('activity:remove', doc);
 }
