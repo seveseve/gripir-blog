@@ -10,6 +10,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
+var seed = require('./config/seed');
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -18,8 +19,15 @@ mongoose.connection.on('error', function(err) {
 	process.exit(-1);
 	}
 );
-// Populate DB with sample data
-if(config.seedDB) { require('./config/seed'); }
+
+mongoose.connection.on('connected', function () {  
+    console.log('Connected to mongoDB');
+    
+    // Populate DB with sample data
+    if (config.seedDB) { 
+        seed.seed();
+     }
+});
 
 // Setup server
 var app = express();
